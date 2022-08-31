@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private int imageTransparencyValue;
     private static final int CAMERA_REQUEST = 100;
     private ImageView imageView;
-    private Button importButton;
+    private ImageButton importButton;
     int SELECT_PICTURE = 200;
 
 
@@ -70,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
         importButton = findViewById(R.id.import_button);
 
         //Set default value for seekbar
-        verticalSeekBar.setProgress(imageTransparencyValue);
-        verticalSeekBar.setProgress(50);
         verticalSeekBar.setMax(255);
+        verticalSeekBar.setProgress(255);
 
         verticalSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                //Seek barı opak hale getir.
+                //TODO: Seek barı opak hale getir.
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                //Seek barı kısmen saydam hale getir.
+                //TODO: Seek barı kısmen saydam hale getir.
             }
         });
 
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     imageView.setImageURI(selectedImageUri);
-                    this.verticalSeekBar.setProgress(255); // uygulama açıldığında ilk defa image seçildiğinde görsel %100 opak geliyor. Burada verdiğim değer gelmiyor.
+                    this.verticalSeekBar.setProgress(255);
                 }
             }
         }

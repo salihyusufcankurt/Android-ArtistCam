@@ -20,25 +20,29 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/amongus"
             />
 
         <com.salihyusufcankurt.artistcam.VerticalSeekBar
             android:id="@+id/verticalSeekBar"
             android:layout_width="60sp"
             android:layout_height="match_parent"
-            android:layout_marginStart="20sp"
+            android:layout_marginStart="10sp"
             android:layout_marginTop="100sp"
             android:layout_marginBottom="100sp"
             android:layout_gravity="left"
             />
-        <Button
+        <ImageButton
             android:id="@+id/import_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
+            android:adjustViewBounds="true"
+            android:maxWidth="75sp"
+            android:maxHeight="75sp"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="40sp"
             android:layout_marginRight="20sp"
-            android:text="Import Image"
+            android:src="@drawable/gallery"
             android:layout_gravity="right"
             android:textColor="#b3e5fc"
             style="@style/Widget.MaterialComponents.Button.TextButton"
