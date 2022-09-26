@@ -40,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private ImageButton importButton;
     int SELECT_PICTURE = 200;
+    private int PROGRESS_MAX_VALUE = 255;
 
-
+//TODO: Oto fokus kaldırılacak, manuel olarak odaklama yapılacak. Seekbar ile olabilir.
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -71,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         importButton = findViewById(R.id.import_button);
 
         //Set default value for seekbar
-        verticalSeekBar.setMax(255);
-        verticalSeekBar.setProgress(255);
+        verticalSeekBar.setMax(PROGRESS_MAX_VALUE);
+        verticalSeekBar.setProgress(PROGRESS_MAX_VALUE);
 
         verticalSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 /**
     textButton.setOnClickListener {
         // Respond to button press
@@ -122,13 +124,16 @@ public class MainActivity extends AppCompatActivity {
         Preview preview = new Preview.Builder()
                 .build();
 
+
         CameraSelector cameraSelector = new CameraSelector.Builder()
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build();
 
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, preview);
+        camera.getCameraControl().cancelFocusAndMetering();
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -153,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         // pass the constant to compare it
         // with the returned requestCode
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
     }
 
     // this function is triggered when user
@@ -170,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     imageView.setImageURI(selectedImageUri);
-                    this.verticalSeekBar.setProgress(255);
+                    this.verticalSeekBar.setProgress(PROGRESS_MAX_VALUE);
                 }
             }
         }
